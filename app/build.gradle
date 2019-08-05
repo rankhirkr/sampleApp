@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'org.sonarqube'
+apply plugin: 'jacoco'
 
 android {
     compileSdkVersion 28
@@ -27,6 +29,43 @@ android {
             includeAndroidResources = true
         }
     }
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
+    }
+
+    sonarqube{
+        properties {
+            /*property "sonar.login", "admin"
+            property "sonar.password", "admin"
+            property "sonar.projectName", "BasicSampleApp"
+            property "sonar.projectKey", "BasicSampleApp"
+            property "sonar.sources", "app/src/main"
+            property "sonar.java.source","app/src/main"
+            property "sonar.sourceEncoding", "UTF-8"
+            property "sonar.tests", "app/src/test/java, app/src/androidTest/java"
+            property "sonar.java.binaries", "app/build/intermediates/classes/prod/debug/com/example/android/architecture/blueprints/todoapp"
+            property "sonar.projectBaseDir", "/Randhir/Learnings/JenkinsApp/sampleApp"
+            property "sonar.host.url", "http://localhost:9000/BasicSampleApp"
+            */
+            property "sonar.projectName", "BasicSampleApp"
+            property "sonar.projectKey", "com.example.android.testing.espresso.BasicSample"
+            property "sonar.host.url", "http://localhost:9000"
+            property "sonar.language", "java"
+            property "sonar.sources", "src/main/"
+            property "sonar.login", "admin"
+            property "sonar.password", "admin"
+
+            //property "sonar.sources", "src/main/java"
+            property "sonar.tests", "src/test/java"
+            property "sonar.java.coveragePlugin", "jacoco"
+           // property "sonar.coverage.exclusions", "${androidExclusion.join(',')}"
+            property "sonar.jacoco.reportPaths", "build/jacoco/testStagingDebugUnitTest.exec"
+            property "sonar.junit.reportsPath", "build/test-results/testStagingDebugUnitTest"
+
+        }
+    }
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
@@ -41,7 +80,7 @@ dependencies {
     implementation 'com.google.guava:guava:26.0-android'
 
     // Testing-only dependencies
-    implementation 'com.google.firebase:firebase-config:16.1.0'
+    //implementation 'com.google.firebase:firebase-config:16.1.0'
     androidTestImplementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     androidTestImplementation 'androidx.test:core:' + rootProject.coreVersion
     androidTestImplementation 'androidx.test:core-ktx:' + rootProject.coreVersion
