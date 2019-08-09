@@ -54,13 +54,12 @@ android {
             property "sonar.host.url", "http://localhost:9000"
             property "sonar.language", "java"
             property "sonar.sources", "src/main/"
-            property "sonar.login", "admin"
-            property "sonar.password", "admin"
+            property "sonar.login", "7ceb99f7418f8e577f3438309496ef14c09058af"
+            //property "sonar.password", "admin"
 
             //property "sonar.sources", "src/main/java"
             property "sonar.tests", "src/test/java"
-            property "sonar.java.coveragePlugin", "jacoco"
-           // property "sonar.coverage.exclusions", "${androidExclusion.join(',')}"
+            property "sonar.java.coveragePlugin", "jacoco"           // property "sonar.coverage.exclusions", "${androidExclusion.join(',')}"
             property "sonar.jacoco.reportPaths", "build/jacoco/testStagingDebugUnitTest.exec"
             property "sonar.junit.reportsPath", "build/test-results/testStagingDebugUnitTest"
 
